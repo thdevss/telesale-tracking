@@ -16,12 +16,16 @@ return new class extends Migration
         Schema::create('daily_summary', function (Blueprint $table) {
             $table->date('summary_date');
             $table->foreignUuid('campaign_id')->references('id')->on('campaign');
+
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('customer_status')->references('id')->on('status');
+            $table->unsignedBigInteger('status_id');
+            $table->foreign('status_id')->references('id')->on('customer_status');
+
             $table->integer('total_customer');
             $table->string('remark');
             $table->timestamps();
-            $table->primary(['summary_date', 'campaign_id', 'user_id', 'customer_status']);
+            $table->primary(['summary_date', 'campaign_id', 'user_id', 'status_id'], 'm_primary_ds');
         });
     }
 
