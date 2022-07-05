@@ -20,7 +20,7 @@
                             {{ __('Campaign') }}
                         </x-nav-link>
 
-                        <x-nav-link :href="route('admin.customer')" :active="request()->routeIs('admin.customer.*')">
+                        <x-nav-link :href="route('admin.customer.index')" :active="request()->routeIs('admin.customer.*')">
                             {{ __('Customer') }}
                         </x-nav-link>
                     @else

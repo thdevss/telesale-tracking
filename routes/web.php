@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\AdminCampaignController;
+use \App\Http\Controllers\AdminCustomerController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -68,9 +70,25 @@ Route::prefix('admin')->middleware(['auth', 'isadmin'])->name('admin.')->group(f
 
     
 
-    Route::get('/customer', function () {
-        return view('customer');
-    })->name('customer');
+    Route::prefix('customer')->name('customer.')->group(function () {
+        Route::get('/', [AdminCustomerController::class, 'index'])->name('index');
+        
+        // Route::get('/{campaign}/report', [AdminCampaignController::class, 'report_summary'])->name('report');
+        // Route::get('/{campaign}/report/list', [AdminCampaignController::class, 'report_list'])->name('report.list');
+
+
+        Route::get('/add', [AdminCampaignController::class, 'add'])->name('add');
+        // Route::post('/add', [AdminCampaignController::class, 'store'])->name('store');
+
+
+        // Route::get('/{campaign}', [AdminCampaignController::class, 'edit'])->name('edit');
+        // Route::put('/{campaign}', [AdminCampaignController::class, 'update'])->name('update');
+
+
+        // Route::delete('/{campaign}', [AdminCampaignController::class, 'destroy'])->name('destroy');
+
+    });
+
 });
 
 
