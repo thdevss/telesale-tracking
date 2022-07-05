@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('campaign', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->string('description');
-            $table->dateTime('start_at');
-            $table->dateTime('end_at');
-            $table->boolean('is_active');
+            $table->string('description')->nullable();
+            $table->integer('current_target_rate')->default(0);
+            $table->integer('success_target_rate')->default(100);
+            $table->dateTime('start_at')->nullable();
+            $table->dateTime('end_at')->nullable();
+            $table->boolean('is_active')->boolean(0);
             $table->timestamps();
         });
     }

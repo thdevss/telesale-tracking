@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\AdminCampaignController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,9 +15,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     // return view('welcome');
-    return to_route('user.dashboard');
+    return to_route('dashboard');
 });
 
+Route::get('/dashboard', function () {
+    // return view('welcome');
+    if(Auth::user()->role === 'admin') {
+        return to_route('admin.dashboard');
+    }
+
+    return to_route('user.dashboard');
+})->name('dashboard');
 
 Route::prefix('user')->middleware(['auth'])->name('user.')->group(function () {
 
@@ -38,7 +46,31 @@ Route::prefix('admin')->middleware(['auth', 'isadmin'])->name('admin.')->group(f
         return view('dashboard');
     })->name('dashboard');
 
+    Route::prefix('campaign')->name('campaign.')->group(function () {
+        Route::get('/', [AdminCampaignController::class, 'index'])->name('index');
+        
+        Route::get('/{campaign}/report', [AdminCampaignController::class, 'report_summary'])->name('report');
+        Route::get('/{campaign}/report/list', [AdminCampaignController::class, 'report_list'])->name('report.list');
+
+
+        Route::get('/add', [AdminCampaignController::class, 'add'])->name('add');
+        Route::post('/add', [AdminCampaignController::class, 'store'])->name('store');
+
+
+        Route::get('/{campaign}', [AdminCampaignController::class, 'edit'])->name('edit');
+        Route::put('/{campaign}', [AdminCampaignController::class, 'update'])->name('update');
+
+
+        Route::delete('/{campaign}', [AdminCampaignController::class, 'destroy'])->name('destroy');
+
+    });
+
+
     
+
+    Route::get('/customer', function () {
+        return view('customer');
+    })->name('customer');
 });
 
 

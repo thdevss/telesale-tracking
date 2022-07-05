@@ -16,14 +16,18 @@
                         <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
-                            {{ __('Dashboard') }}
+                        <x-nav-link :href="route('admin.campaign.index')" :active="request()->routeIs('admin.campaign.*')">
+                            {{ __('Campaign') }}
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('admin.customer')" :active="request()->routeIs('admin.customer.*')">
+                            {{ __('Customer') }}
                         </x-nav-link>
                     @else
                         <x-nav-link :href="route('user.dashboard')" :active="request()->routeIs('user.dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('user.campaign')" :active="request()->routeIs('user.campaign')">
+                        <x-nav-link :href="route('user.campaign')" :active="request()->routeIs('user.campaign.*')">
                             {{ __('Campaign') }}
                         </x-nav-link>
                     @endif
