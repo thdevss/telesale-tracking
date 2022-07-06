@@ -81,7 +81,7 @@ Route::prefix('admin')->middleware(['auth', 'isadmin'])->name('admin.')->group(f
         // Route::post('/add', [AdminCampaignController::class, 'store'])->name('store');
 
 
-        // Route::get('/{campaign}', [AdminCampaignController::class, 'edit'])->name('edit');
+        Route::get('/{customer}', [AdminCampaignController::class, 'edit'])->name('edit');
         // Route::put('/{campaign}', [AdminCampaignController::class, 'update'])->name('update');
 
 

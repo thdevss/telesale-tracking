@@ -13,5 +13,9 @@ class Campaign extends Model
 
     public $incrementing = false;
 
+    // public function event()
+    // {
+    //     return $this->belongsTo(CustomerEvent::class);
+    // }
 
 }

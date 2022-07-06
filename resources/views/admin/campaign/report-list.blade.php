@@ -38,22 +38,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($campaigns as $i => $campaign)
+                                    @foreach ($customers as $i => $customer)
                                     <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            2022-07-07 00:01
+                                            {{ $customer->updated_at }}
                                         </td>
                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            <p>Name: K.khun</p>
-                                            <p>Telephone Number: xxx-xxx-xxxx</p>
+                                            <p>Name: {{ $customer->customer->full_name }} ({{ $customer->customer->nick_name }})</p>
+                                            <p>Telephone Number: [{{ $customer->customer->telephone_number }}]</p>
                                         </td>
                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                             <span class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">
-                                                Green
+                                                {{ $customer->status->name }}
                                             </span>
                                         </td>
                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            please don't tel me more, i don't interested anything.
+                                            {{ $customer->remark }}
                                         </td>
                                     </tr>
                                     @endforeach
@@ -61,7 +61,7 @@
                             </table>
 
                             <div class="mt-5 mb-5">
-                                {{ $campaigns->links() }}
+                                {{ $customers->links() }}
                             </div>    
                         </div>
                     </div>
